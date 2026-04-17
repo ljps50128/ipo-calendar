@@ -1,0 +1,34 @@
+name: 每日更新申購資料
+
+on:
+  schedule:
+    # 台灣時間每天早上 8:00 (UTC 00:00)
+    - cron: '0 0 * * *'
+  # 也可以手動觸發
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 抓取 TWSE 資料
+        run: python fetch_data.py
+
+      - name: Commit & Push data.json
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data.json
+          git diff --cached --quiet || git commit -m "chore: 自動更新申購資料 $(date -u '+%Y-%m-%d')"
+          git push
