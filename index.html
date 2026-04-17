@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>📋 台股申購行事曆</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0f14; --surface: #161922; --surface2: #1e2330; --border: #2a3045;
+    --accent: #00e5a0; --accent2: #3d8bff; --warn: #ff6b35; --red: #ff4757;
+    --gold: #ffd700; --text: #e8ecf4; --text2: #8892aa; --text3: #5a6480;
+    --tag-ipo: #1a3a2a; --tag-ipo-t: #00e5a0; --tag-spo: #1a2840; --tag-spo-t: #3d8bff;
+    --tag-bond: #2a2215; --tag-bond-t: #ffd700; --tag-tib: #2a1a35;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  body { font-family: 'Noto Sans TC', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overscroll-behavior: none; }
+
+  /* ── Header ── */
+  .header { position: sticky; top: 0; z-index: 100; background: rgba(13,15,20,0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 12px 16px 12px; }
+  .header-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  .logo { display: flex; align-items: center; gap: 8px; }
+  .logo-icon { width: 32px; height: 32px; background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+  .logo-text { font-size: 16px; font-weight: 900; letter-spacing: -0.5px; }
+  .logo-sub { font-size: 10px; color: var(--text3); font-family: 'Space Mono', monospace; }
+  .update-badge { font-size: 10px; color: var(--text3); font-family: 'Space Mono', monospace; background: var(--surface); border: 1px solid var(--border); padding: 3px 7px; border-radius: 4px; white-space: nowrap; }
+
+  /* ── Filter rows ── */
+  .filter-row, .time-row { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; }
+  .filter-row::-webkit-scrollbar, .time-row::-webkit-scrollbar { display: none; }
+  .filter-row { padding-bottom: 2px; }
+  .time-row { padding: 8px 16px 0; }
+  .filter-btn { flex-shrink: 0; padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border); background: transparent; color: var(--text2); font-size: 12px; font-family: 'Noto Sans TC', sans-serif; font-weight: 500; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+  .filter-btn.active { border-color: var(--accent); color: var(--accent); background: rgba(0,229,160,0.1); }
+  .filter-btn:active { transform: scale(0.95); }
+  .time-btn { flex-shrink: 0; padding: 4px 11px; border-radius: 16px; border: 1px solid var(--border); background: transparent; color: var(--text3); font-size: 12px; font-family: 'Noto Sans TC', sans-serif; font-weight: 500; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+  .time-btn.active { border-color: var(--gold); color: var(--gold); background: rgba(255,215,0,0.08); }
+  .time-btn:active { transform: scale(0.95); }
+
+  /* ── Font toggle ── */
+  .font-toggle { display: flex; align-items: center; gap: 3px; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 3px 4px; }
+  .font-btn { width: 26px; height: 26px; border-radius: 5px; border: none; background: transparent; color: var(--text2); font-size: 13px; font-weight: 700; font-family: 'Noto Sans TC', sans-serif; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
+  .font-btn.active { background: var(--accent); color: #000; }
+  body.fs-md .card-name { font-size: 18px; } body.fs-lg .card-name { font-size: 21px; }
+  body.fs-md .card-price { font-size: 22px; } body.fs-lg .card-price { font-size: 26px; }
+  body.fs-md .tl-lbl, body.fs-md .tl-date { font-size: 11px; } body.fs-lg .tl-lbl, body.fs-lg .tl-date { font-size: 13px; }
+  body.fs-md .tag { font-size: 12px; padding: 3px 9px; } body.fs-lg .tag { font-size: 14px; padding: 4px 10px; }
+  body.fs-md .acct-label { font-size: 14px; } body.fs-lg .acct-label { font-size: 16px; }
+  body.fs-md .card-code { font-size: 14px; } body.fs-lg .card-code { font-size: 16px; }
+  body.fs-md .card-broker-badge { font-size: 13px; } body.fs-lg .card-broker-badge { font-size: 15px; }
+  body.fs-md .detail-val { font-size: 15px; } body.fs-lg .detail-val { font-size: 17px; }
+  body.fs-md .detail-lbl { font-size: 12px; } body.fs-lg .detail-lbl { font-size: 14px; }
+
+  /* ── Stats bar ── */
+  .stats-bar { display: flex; gap: 8px; padding: 10px 16px; border-bottom: 1px solid var(--border); overflow-x: auto; scrollbar-width: none; }
+  .stats-bar::-webkit-scrollbar { display: none; }
+  .stat-chip { flex-shrink: 0; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 6px 12px; display: flex; align-items: center; gap: 6px; }
+  .stat-chip .num { font-family: 'Space Mono', monospace; font-size: 15px; font-weight: 700; color: var(--accent); }
+  .stat-chip .lbl { font-size: 11px; color: var(--text3); line-height: 1.3; }
+
+  /* ── Section label ── */
+  .section-label { padding: 14px 16px 6px; font-size: 11px; font-family: 'Space Mono', monospace; color: var(--text3); letter-spacing: 1px; text-transform: uppercase; }
+
+  /* ── Card ── */
+  .card { margin: 0 12px 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; transition: transform 0.15s, box-shadow 0.15s; cursor: pointer; }
+  .card:active { transform: scale(0.98); }
+  .card.expanded .card-detail { display: block; }
+  .card.highlighted { border-color: rgba(0,229,160,0.4); box-shadow: 0 0 0 1px rgba(0,229,160,0.15), 0 4px 20px rgba(0,229,160,0.08); }
+  .card.ipo-card { border-left: 3px solid var(--accent); }
+  .card.spo-card { border-left: 3px solid var(--accent2); }
+  .card.bond-card { border-left: 3px solid var(--gold); }
+  .card.tib-card { border-left: 3px solid #c77dff; }
+  .card-main { padding: 12px 14px; }
+  .card-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 8px; }
+  .card-name { font-size: 16px; font-weight: 700; line-height: 1.2; margin-bottom: 3px; }
+  .card-code { font-family: 'Space Mono', monospace; font-size: 12px; color: var(--text3); }
+  .card-price-block { text-align: right; }
+  .card-price { font-family: 'Space Mono', monospace; font-size: 20px; font-weight: 700; line-height: 1; }
+  .card-price.pending { color: var(--text3); font-size: 14px; }
+  .card-price-lbl { font-size: 10px; color: var(--text3); text-align: right; margin-top: 2px; }
+  .card-broker-badge { margin-top: 5px; text-align: right; font-size: 11px; color: var(--text3); font-weight: 500; }
+  .card-broker-badge span { color: var(--accent2); font-weight: 700; }
+  .tags { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 10px; }
+  .tag { font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 4px; letter-spacing: 0.3px; }
+  .tag-ipo { background: var(--tag-ipo); color: var(--tag-ipo-t); }
+  .tag-spo { background: var(--tag-spo); color: var(--tag-spo-t); }
+  .tag-bond { background: var(--tag-bond); color: var(--tag-bond-t); }
+  .tag-tib { background: var(--tag-tib); color: #c77dff; }
+
+  /* ── Timeline ── */
+  .timeline { display: flex; gap: 0; position: relative; margin-bottom: 4px; }
+  .tl-step { flex: 1; position: relative; padding-top: 18px; }
+  .tl-step::before { content: ''; position: absolute; top: 6px; left: 50%; transform: translateX(-50%); width: 8px; height: 8px; border-radius: 50%; background: var(--border); z-index: 1; }
+  .tl-step.done::before { background: var(--text3); }
+  .tl-step.active::before { background: var(--accent); box-shadow: 0 0 0 3px rgba(0,229,160,0.2); }
+  .tl-step.future::before { background: var(--surface2); border: 1px solid var(--border); }
+  .tl-step:not(:last-child)::after { content: ''; position: absolute; top: 9px; left: calc(50% + 4px); right: calc(-50% + 4px); height: 1px; background: var(--border); z-index: 0; }
+  .tl-step.done:not(:last-child)::after { background: var(--text3); }
+  .tl-step.active:not(:last-child)::after { background: linear-gradient(to right, var(--accent), var(--border)); }
+  .tl-lbl { text-align: center; font-size: 9px; color: var(--text3); line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 2px; }
+  .tl-lbl.active-lbl { color: var(--accent); font-weight: 700; }
+  .tl-date { text-align: center; font-family: 'Space Mono', monospace; font-size: 9px; color: var(--text3); margin-top: 1px; padding: 0 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  /* ── Win bar ── */
+  .win-bar-wrap { margin-top: 8px; }
+  .win-bar-header { display: flex; justify-content: space-between; margin-bottom: 4px; }
+  .win-bar-lbl { font-size: 10px; color: var(--text3); }
+  .win-bar-pct { font-family: 'Space Mono', monospace; font-size: 11px; font-weight: 700; }
+  .win-bar-bg { height: 4px; background: var(--surface2); border-radius: 2px; overflow: hidden; }
+  .win-bar-fill { height: 100%; border-radius: 2px; transition: width 0.6s cubic-bezier(.22,.68,0,1.2); }
+
+  /* ── Detail ── */
+  .card-detail { display: none; border-top: 1px solid var(--border); padding: 12px 14px; background: rgba(0,0,0,0.2); }
+  .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .detail-lbl { font-size: 10px; color: var(--text3); margin-bottom: 2px; }
+  .detail-val { font-family: 'Space Mono', monospace; font-size: 13px; color: var(--text); font-weight: 700; }
+  .detail-val.green { color: var(--accent); } .detail-val.blue { color: var(--accent2); }
+
+  /* ── Account checkboxes ── */
+  .acct-row { display: flex; gap: 6px; margin-top: 9px; padding-top: 9px; border-top: 1px solid var(--border); }
+  .acct-check { flex: 1; display: flex; align-items: center; gap: 6px; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 8px; padding: 7px 10px; cursor: pointer; transition: all 0.18s; user-select: none; -webkit-user-select: none; }
+  .acct-check.checked-yf { background: rgba(0,229,160,0.08); border-color: var(--accent); }
+  .acct-check.checked-yd { background: rgba(61,139,255,0.08); border-color: var(--accent2); }
+  .acct-check:active { transform: scale(0.96); }
+  .acct-box { width: 16px; height: 16px; border-radius: 4px; border: 1.5px solid var(--border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 10px; transition: all 0.15s; }
+  .checked-yf .acct-box { background: var(--accent); border-color: var(--accent); }
+  .checked-yd .acct-box { background: var(--accent2); border-color: var(--accent2); }
+  .acct-label { font-size: 12px; font-weight: 700; color: var(--text2); line-height: 1; }
+  .checked-yf .acct-label { color: var(--accent); } .checked-yd .acct-label { color: var(--accent2); }
+  .acct-sub { font-size: 10px; color: var(--text3); margin-top: 1px; }
+
+  /* ── Urgent banner ── */
+  .urgent-banner { margin: 0 12px 10px; background: linear-gradient(135deg, rgba(255,107,53,0.15), rgba(255,71,87,0.08)); border: 1px solid rgba(255,107,53,0.3); border-radius: 10px; padding: 10px 14px; display: flex; align-items: center; gap: 8px; }
+  .urgent-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--warn); flex-shrink: 0; animation: pulse 1.2s infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+  .urgent-text { font-size: 12px; color: var(--warn); font-weight: 500; }
+
+  /* ── Loading / Error ── */
+  .loading-wrap { padding: 60px 24px; text-align: center; color: var(--text3); }
+  .loading-spinner { width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 16px; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .error-wrap { margin: 24px 12px; background: rgba(255,71,87,0.1); border: 1px solid rgba(255,71,87,0.3); border-radius: 12px; padding: 16px; text-align: center; }
+  .error-wrap p { font-size: 13px; color: var(--red); margin-bottom: 8px; }
+  .retry-btn { padding: 6px 16px; border-radius: 8px; border: 1px solid var(--red); background: transparent; color: var(--red); font-size: 13px; cursor: pointer; font-family: 'Noto Sans TC', sans-serif; }
+  .empty { text-align: center; padding: 48px 24px; color: var(--text3); font-size: 14px; }
+  .footer { padding: 16px; text-align: center; font-size: 11px; color: var(--text3); border-top: 1px solid var(--border); margin-top: 8px; line-height: 1.8; }
+  .footer a { color: var(--accent2); text-decoration: none; }
+  .fab { position: fixed; bottom: 24px; right: 16px; width: 44px; height: 44px; background: var(--surface2); border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; cursor: pointer; box-shadow: 0 4px 16px rgba(0,0,0,0.4); opacity: 0; transition: opacity 0.3s; z-index: 50; }
+  .fab.visible { opacity: 1; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-top">
+    <div class="logo">
+      <div class="logo-icon">📋</div>
+      <div>
+        <div class="logo-text">申購行事曆</div>
+        <div class="logo-sub">IPO · SPO · 公債</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <div class="font-toggle">
+        <button class="font-btn active" id="fsSmBtn" onclick="setFontSize('sm')">小</button>
+        <button class="font-btn" id="fsMdBtn" onclick="setFontSize('md')">中</button>
+        <button class="font-btn" id="fsLgBtn" onclick="setFontSize('lg')">大</button>
+      </div>
+      <div class="update-badge" id="updateBadge">載入中…</div>
+    </div>
+  </div>
+  <div class="filter-row">
+    <button class="filter-btn active" data-filter="all">全部</button>
+    <button class="filter-btn" data-filter="upcoming">申購中/即將</button>
+    <button class="filter-btn" data-filter="ipo">初上市/初上櫃</button>
+    <button class="filter-btn" data-filter="spo">現金增資</button>
+    <button class="filter-btn" data-filter="bond">公債</button>
+  </div>
+  <div class="time-row">
+    <button class="time-btn" data-months="1">近一個月</button>
+    <button class="time-btn" data-months="3">近三個月</button>
+    <button class="time-btn" data-months="6">近半年</button>
+    <button class="time-btn active" data-months="12">近一年</button>
+  </div>
+</div>
+
+<div class="stats-bar">
+  <div class="stat-chip"><span class="num" id="statTotal">-</span><span class="lbl">總筆數</span></div>
+  <div class="stat-chip"><span class="num" id="statActive" style="color:var(--warn)">-</span><span class="lbl">申購中/即將</span></div>
+  <div class="stat-chip"><span class="num" id="statIpo">-</span><span class="lbl">新股</span></div>
+  <div class="stat-chip"><span class="num" id="statAvgRate" style="color:var(--gold)">-</span><span class="lbl">平均中籤%</span></div>
+</div>
+
+<div id="root">
+  <div class="loading-wrap">
+    <div class="loading-spinner"></div>
+    <div>正在載入最新申購資料…</div>
+  </div>
+</div>
+
+<div class="footer">
+  資料來源：<a href="https://www.twse.com.tw/zh/announcement/public.html" target="_blank">臺灣證券交易所</a>
+  · 每日 08:00 自動更新<br>
+  以上資料僅供參考，實際請以主辦券商公告為準<br>
+  申購截止日後不得放棄認購 · 處理費NT$20 · 郵寄工本費NT$50
+</div>
+
+<div class="fab" id="fab" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div>
+
+<script>
+// ── 日期工具 ──
+function parseROC(s) {
+  if (!s) return null;
+  const p = s.split('/');
+  if (p.length !== 3) return null;
+  return new Date(+p[0] + 1911, +p[1] - 1, +p[2]);
+}
+function fmtROC(s) {
+  if (!s) return '-';
+  const p = s.split('/');
+  return p.length === 3 ? `${p[1]}/${p[2]}` : s;
+}
+function todayMidnight() {
+  const n = new Date();
+  return new Date(n.getFullYear(), n.getMonth(), n.getDate());
+}
+const TODAY = todayMidnight();
+
+function getStatus(item) {
+  const start = parseROC(item.subStart);
+  const end   = parseROC(item.subEnd);
+  const draw  = parseROC(item.drawDate);
+  if (!start) return 'done';
+  if (TODAY < start) return 'upcoming';
+  if (TODAY >= start && TODAY <= end) return 'active';
+  if (TODAY > end && draw && TODAY <= draw) return 'drawing';
+  return 'done';
+}
+
+// ── 顏色工具 ──
+function winRateColor(r) { return r < 1 ? 'var(--red)' : r < 5 ? 'var(--warn)' : 'var(--accent)'; }
+function winRateFill(r)  { return r < 1 ? 'var(--red)' : r < 5 ? 'var(--warn)' : 'var(--accent)'; }
+function winBarW(r)      { return Math.min(r * 3, 100); }
+function fmtAmt(n) { if (!n) return '-'; if (n>=1e8) return (n/1e8).toFixed(1)+' 億'; if (n>=1e4) return Math.round(n/1e4)+' 萬'; return n.toLocaleString(); }
+function fmtNum(n) { return n ? n.toLocaleString() : '-'; }
+
+// ── 字體大小 ──
+function setFontSize(sz) {
+  document.body.classList.remove('fs-md','fs-lg');
+  if (sz !== 'sm') document.body.classList.add('fs-'+sz);
+  ['sm','md','lg'].forEach(s => document.getElementById('fs'+s.charAt(0).toUpperCase()+s.slice(1)+'Btn').classList.toggle('active', s===sz));
+  localStorage.setItem('ipo_fs', sz);
+}
+(function(){ const s = localStorage.getItem('ipo_fs'); if (s && s!=='sm') setFontSize(s); })();
+
+// ── 帳戶勾選 ──
+const ACCT_KEY = 'ipo_acct_checks';
+function loadAcct() { try { return JSON.parse(localStorage.getItem(ACCT_KEY)||'{}'); } catch(e) { return {}; } }
+function saveAcct(d) { try { localStorage.setItem(ACCT_KEY, JSON.stringify(d)); } catch(e) {} }
+let acctState = loadAcct();
+
+function toggleAcct(e, id, acct) {
+  e.stopPropagation();
+  const key = id + '_' + acct;
+  acctState[key] = !acctState[key];
+  saveAcct(acctState);
+  const el = document.getElementById('acct-'+id+'-'+acct);
+  if (!el) return;
+  const cls = acct==='yf' ? 'checked-yf' : 'checked-yd';
+  el.classList.toggle(cls, acctState[key]);
+  el.querySelector('.acct-box').textContent = acctState[key] ? '✓' : '';
+}
+
+// ── HTML 建構 ──
+function buildTagHTML(item) {
+  const labels = { ipo:'新股', spo:'增資', bond:'公債', tib:'創新板' };
+  const cls    = { ipo:'tag-ipo', spo:'tag-spo', bond:'tag-bond', tib:'tag-tib' };
+  let out = `<span class="tag ${cls[item.type]}">${labels[item.type]||item.type}</span>`;
+  out += `<span class="tag" style="background:var(--surface2);color:var(--text3)">${item.market}</span>`;
+  const st = getStatus(item);
+  if (st==='active')   out += `<span class="tag" style="background:rgba(255,107,53,0.15);color:var(--warn)">📌 申購中</span>`;
+  if (st==='upcoming') out += `<span class="tag" style="background:rgba(61,139,255,0.1);color:var(--accent2)">🗓 即將申購</span>`;
+  if (st==='drawing')  out += `<span class="tag" style="background:rgba(255,215,0,0.1);color:var(--gold)">🎲 等待抽籤</span>`;
+  if (st==='done')     out += `<span class="tag" style="background:var(--surface2);color:var(--text3)">✓ 已結束</span>`;
+  return out;
+}
+
+function buildTimelineHTML(item) {
+  const start = parseROC(item.subStart), end = parseROC(item.subEnd);
+  const draw  = parseROC(item.drawDate), list = parseROC(item.listDate);
+  function step(label, date, dateStr) {
+    let cls = 'future', lblCls = '';
+    if (label==='開始申購') { cls = !start||TODAY<start ? 'future' : TODAY<=end ? 'active' : 'done'; lblCls = cls==='active'?'active-lbl':''; }
+    if (label==='截止')    { cls = !end||TODAY<start ? 'future' : TODAY<=end ? 'active' : 'done'; }
+    if (label==='抽籤')    { cls = !draw||TODAY<draw ? 'future' : TODAY.getTime()===draw.getTime() ? 'active' : 'done'; }
+    if (label==='上市')    { cls = !list||TODAY<list ? 'future' : 'done'; }
+    return `<div class="tl-step ${cls}"><div class="tl-lbl ${lblCls}">${label}</div><div class="tl-date">${fmtROC(dateStr)}</div></div>`;
+  }
+  return `<div class="timeline">
+    ${step('開始申購',start,item.subStart)}
+    ${step('截止',end,item.subEnd)}
+    ${step('抽籤',draw,item.drawDate)}
+    ${step('上市',list,item.listDate)}
+  </div>`;
+}
+
+function buildCardHTML(item) {
+  const st = getStatus(item);
+  const cardCls = ['card', item.type+'-card', st==='active'?'highlighted':''].filter(Boolean).join(' ');
+  const priceHTML = item.realPrice && item.realPrice!=='未訂出'
+    ? `<div class="card-price">$${item.realPrice}</div><div class="card-price-lbl">承銷價 (元)</div>`
+    : `<div class="card-price pending">待定</div><div class="card-price-lbl">承銷價</div>`;
+  const winStr   = item.winRate>0 ? item.winRate.toFixed(2)+'%' : (item.type==='bond'?'定額':'未出爐');
+  const winColor = item.winRate>0 ? winRateColor(item.winRate) : 'var(--text3)';
+  const yfChecked = !!acctState[item.id+'_yf'], ydChecked = !!acctState[item.id+'_yd'];
+
+  return `<div class="${cardCls}" id="card-${item.id}" onclick="toggleCard(${item.id})">
+    <div class="card-main">
+      <div class="card-top">
+        <div>
+          <div class="card-name">${item.name}</div>
+          <div class="card-code">${item.code}</div>
+        </div>
+        <div class="card-price-block">
+          ${priceHTML}
+          <div class="card-broker-badge">主辦：<span>${item.broker}</span></div>
+        </div>
+      </div>
+      <div class="tags">${buildTagHTML(item)}</div>
+      ${buildTimelineHTML(item)}
+      ${item.winRate>0 ? `<div class="win-bar-wrap">
+        <div class="win-bar-header"><span class="win-bar-lbl">中籤率</span><span class="win-bar-pct" style="color:${winRateColor(item.winRate)}">${item.winRate.toFixed(2)}%</span></div>
+        <div class="win-bar-bg"><div class="win-bar-fill" style="width:${winBarW(item.winRate)}%;background:${winRateFill(item.winRate)}"></div></div>
+      </div>` : ''}
+      <div class="acct-row">
+        <div class="${yfChecked?'acct-check checked-yf':'acct-check'}" id="acct-${item.id}-yf" onclick="toggleAcct(event,${item.id},'yf')">
+          <div class="acct-box">${yfChecked?'✓':''}</div>
+          <div><div class="acct-label">永豐金</div><div class="acct-sub">已申購</div></div>
+        </div>
+        <div class="${ydChecked?'acct-check checked-yd':'acct-check'}" id="acct-${item.id}-yd" onclick="toggleAcct(event,${item.id},'yd')">
+          <div class="acct-box">${ydChecked?'✓':''}</div>
+          <div><div class="acct-label">元大</div><div class="acct-sub">已申購</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-detail" id="detail-${item.id}">
+      <div class="detail-grid">
+        <div><div class="detail-lbl">承銷股數</div><div class="detail-val blue">${fmtNum(item.shares)}</div></div>
+        <div><div class="detail-lbl">每人申購</div><div class="detail-val">${fmtNum(item.subShares)} 股</div></div>
+        <div><div class="detail-lbl">總承銷金額</div><div class="detail-val green">${fmtAmt(item.totalAmt)}</div></div>
+        <div><div class="detail-lbl">合格件數</div><div class="detail-val">${item.qualified>0?fmtNum(item.qualified):'-'}</div></div>
+        <div><div class="detail-lbl">中籤率</div><div class="detail-val" style="color:${winColor}">${winStr}</div></div>
+        <div><div class="detail-lbl">申購截止</div><div class="detail-val">${fmtROC(item.subEnd)}</div></div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function toggleCard(id) { document.getElementById('card-'+id)?.classList.toggle('expanded'); }
+
+// ── 資料過濾 & 渲染 ──
+let ALL = [], currentFilter = 'all', currentMonths = 12;
+
+function filterData() {
+  const cutoff = new Date(TODAY);
+  cutoff.setMonth(cutoff.getMonth() - currentMonths);
+  return ALL.filter(item => {
+    const draw = parseROC(item.drawDate);
+    if (draw && draw < cutoff) return false;
+    if (currentFilter==='upcoming') { const s=getStatus(item); return s==='active'||s==='upcoming'; }
+    if (currentFilter==='ipo')  return item.type==='ipo'||item.type==='tib';
+    if (currentFilter==='spo')  return item.type==='spo';
+    if (currentFilter==='bond') return item.type==='bond';
+    return true;
+  });
+}
+
+function updateStats(data) {
+  const nonBond = data.filter(i=>i.type!=='bond');
+  const active  = data.filter(i=>{ const s=getStatus(i); return s==='active'||s==='upcoming'; });
+  const ipos    = data.filter(i=>i.type==='ipo');
+  const withRate = nonBond.filter(i=>i.winRate>0);
+  const avg = withRate.length ? (withRate.reduce((a,b)=>a+b.winRate,0)/withRate.length) : 0;
+  document.getElementById('statTotal').textContent  = data.length;
+  document.getElementById('statActive').textContent = active.length;
+  document.getElementById('statIpo').textContent    = ipos.length;
+  document.getElementById('statAvgRate').textContent = avg>0 ? avg.toFixed(1) : '-';
+}
+
+function render() {
+  const data = filterData();
+  updateStats(data);
+  const root = document.getElementById('root');
+  if (!data.length) { root.innerHTML = '<div class="empty">此篩選條件下沒有資料</div>'; return; }
+
+  const active   = data.filter(i=>getStatus(i)==='active');
+  const upcoming = data.filter(i=>getStatus(i)==='upcoming');
+  const drawing  = data.filter(i=>getStatus(i)==='drawing');
+  const done     = data.filter(i=>getStatus(i)==='done');
+  let html = '';
+  if (active.length)   html += `<div class="urgent-banner"><div class="urgent-dot"></div><div class="urgent-text">⚡ 目前有 ${active.length} 檔正在申購中！</div></div><div class="section-label">📌 申購中</div>`+active.map(buildCardHTML).join('');
+  if (upcoming.length) html += `<div class="section-label">🗓 即將申購</div>`+upcoming.map(buildCardHTML).join('');
+  if (drawing.length)  html += `<div class="section-label">🎲 等待抽籤</div>`+drawing.map(buildCardHTML).join('');
+  if (done.length)     html += `<div class="section-label">✓ 已結束 (${done.length} 筆)</div>`+done.map(buildCardHTML).join('');
+  root.innerHTML = html;
+
+  // 動畫 win bar
+  setTimeout(()=>{
+    document.querySelectorAll('.win-bar-fill').forEach(el=>{
+      const w = el.style.width; el.style.width='0';
+      requestAnimationFrame(()=>{ el.style.width=w; });
+    });
+  }, 50);
+}
+
+// ── 載入 data.json ──
+async function loadData() {
+  try {
+    const res = await fetch('data.json?t=' + Date.now());
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const json = await res.json();
+    ALL = json.data || [];
+
+    // 顯示更新時間
+    if (json.updated) {
+      const d = new Date(json.updated);
+      // 轉台灣時間
+      const twStr = d.toLocaleString('zh-TW', { timeZone:'Asia/Taipei', month:'numeric', day:'numeric', hour:'2-digit', minute:'2-digit' });
+      document.getElementById('updateBadge').textContent = '更新 ' + twStr;
+    }
+    render();
+  } catch(e) {
+    document.getElementById('root').innerHTML = `
+      <div class="error-wrap">
+        <p>⚠️ 資料載入失敗：${e.message}</p>
+        <p style="font-size:11px;color:var(--text3);margin-bottom:8px;">請確認 data.json 已產生（首次需手動執行 Actions）</p>
+        <button class="retry-btn" onclick="loadData()">重新載入</button>
+      </div>`;
+    document.getElementById('updateBadge').textContent = '載入失敗';
+  }
+}
+
+// ── 事件綁定 ──
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    currentFilter = btn.dataset.filter;
+    render(); window.scrollTo({top:0,behavior:'smooth'});
+  });
+});
+document.querySelectorAll('.time-btn').forEach(btn => {
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.time-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    currentMonths = parseInt(btn.dataset.months);
+    render(); window.scrollTo({top:0,behavior:'smooth'});
+  });
+});
+window.addEventListener('scroll', ()=>{
+  document.getElementById('fab').classList.toggle('visible', window.scrollY>200);
+});
+
+loadData();
+</script>
+</body>
+</html>
