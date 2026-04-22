@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-21T06:23:43Z",
+  "updated": "2026-04-22T06:23:22Z",
   "count": 66,
   "data": [
     {
@@ -132,8 +132,8 @@
       "broker": "台新",
       "subShares": 1000,
       "totalAmt": 32340000,
-      "qualified": 0,
-      "winRate": 0.0
+      "qualified": 113052,
+      "winRate": 0.95
     },
     {
       "id": 8,
