@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-26T06:29:24Z",
+  "updated": "2026-04-27T07:57:42Z",
   "count": 67,
   "data": [
     {
@@ -90,10 +90,10 @@
       "listDate": "115/05/07",
       "shares": 1754000,
       "price": "258",
-      "realPrice": "未訂出",
+      "realPrice": "258",
       "broker": "元大",
       "subShares": 1000,
-      "totalAmt": 0,
+      "totalAmt": 452532000,
       "qualified": 0,
       "winRate": 0.0
     },
