@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-28T07:56:49Z",
+  "updated": "2026-04-29T07:51:05Z",
   "count": 68,
   "data": [
     {
@@ -52,10 +52,10 @@
       "listDate": "115/05/11",
       "shares": 1489000,
       "price": "22.2",
-      "realPrice": "未訂出",
+      "realPrice": "22.06",
       "broker": "台中銀",
       "subShares": 1000,
-      "totalAmt": 0,
+      "totalAmt": 32847340,
       "qualified": 0,
       "winRate": 0.0
     },
@@ -71,10 +71,10 @@
       "listDate": "115/05/11",
       "shares": 772000,
       "price": "108",
-      "realPrice": "未訂出",
+      "realPrice": "108",
       "broker": "永豐金",
       "subShares": 1000,
-      "totalAmt": 0,
+      "totalAmt": 83376000,
       "qualified": 0,
       "winRate": 0.0
     },
@@ -132,8 +132,8 @@
       "broker": "富邦",
       "subShares": 1000,
       "totalAmt": 110080000,
-      "qualified": 0,
-      "winRate": 0.0
+      "qualified": 401813,
+      "winRate": 0.21
     },
     {
       "id": 8,
