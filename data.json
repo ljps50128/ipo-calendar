@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-29T07:51:05Z",
+  "updated": "2026-04-30T07:54:09Z",
   "count": 68,
   "data": [
     {
@@ -113,8 +113,8 @@
       "broker": "元大",
       "subShares": 1000,
       "totalAmt": 452532000,
-      "qualified": 0,
-      "winRate": 0.0
+      "qualified": 301389,
+      "winRate": 0.58
     },
     {
       "id": 7,
