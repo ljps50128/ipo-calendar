@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-04T08:43:59Z",
+  "updated": "2026-05-05T07:32:01Z",
   "count": 68,
   "data": [
     {
@@ -56,8 +56,8 @@
       "broker": "台中銀",
       "subShares": 1000,
       "totalAmt": 32847340,
-      "qualified": 0,
-      "winRate": 0.0
+      "qualified": 89705,
+      "winRate": 1.65
     },
     {
       "id": 4,
@@ -75,8 +75,8 @@
       "broker": "永豐金",
       "subShares": 1000,
       "totalAmt": 83376000,
-      "qualified": 0,
-      "winRate": 0.0
+      "qualified": 202847,
+      "winRate": 0.38
     },
     {
       "id": 5,
