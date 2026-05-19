@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-18T02:30:59Z",
+  "updated": "2026-05-19T02:30:01Z",
   "count": 73,
   "data": [
     {
@@ -33,10 +33,10 @@
       "listDate": "115/05/27",
       "shares": 694000,
       "price": "50.5",
-      "realPrice": "未訂出",
+      "realPrice": "50.5",
       "broker": "元大",
       "subShares": 1000,
-      "totalAmt": 0,
+      "totalAmt": 35047000,
       "qualified": 0,
       "winRate": 0.0
     },
@@ -56,8 +56,8 @@
       "broker": "福邦",
       "subShares": 1000,
       "totalAmt": 30600000,
-      "qualified": 0,
-      "winRate": 0.0
+      "qualified": 698036,
+      "winRate": 0.05
     },
     {
       "id": 4,
