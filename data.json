@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-04T02:47:49Z",
+  "updated": "2026-06-05T02:34:42Z",
   "count": 81,
   "data": [
     {
@@ -71,10 +71,10 @@
       "listDate": "115/06/15",
       "shares": 420000,
       "price": "36",
-      "realPrice": "未訂出",
+      "realPrice": "36",
       "broker": "福邦",
       "subShares": 1000,
-      "totalAmt": 0,
+      "totalAmt": 15120000,
       "qualified": 0,
       "winRate": 0.0
     },
