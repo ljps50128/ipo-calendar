@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-13T01:53:48Z",
+  "updated": "2026-07-14T01:41:23Z",
   "count": 101,
   "data": [
     {
@@ -61,6 +61,25 @@
     },
     {
       "id": 4,
+      "name": "台鎔科技",
+      "code": "6947",
+      "type": "ipo",
+      "market": "初上市",
+      "subStart": "115/07/10",
+      "subEnd": "115/07/15",
+      "drawDate": "115/07/17",
+      "listDate": "115/07/23",
+      "shares": 2222000,
+      "price": "66",
+      "realPrice": "未訂出",
+      "broker": "永豐金",
+      "subShares": 1000,
+      "totalAmt": 0,
+      "qualified": 0,
+      "winRate": 0.0
+    },
+    {
+      "id": 5,
       "name": "長興",
       "code": "1717",
       "type": "spo",
@@ -79,7 +98,7 @@
       "winRate": 0.0
     },
     {
-      "id": 5,
+      "id": 6,
       "name": "典範",
       "code": "3372",
       "type": "spo",
@@ -94,25 +113,6 @@
       "broker": "元大",
       "subShares": 1000,
       "totalAmt": 85680000,
-      "qualified": 0,
-      "winRate": 0.0
-    },
-    {
-      "id": 6,
-      "name": "台鎔科技",
-      "code": "6947",
-      "type": "ipo",
-      "market": "初上市",
-      "subStart": "115/07/10",
-      "subEnd": "115/07/14",
-      "drawDate": "115/07/16",
-      "listDate": "115/07/22",
-      "shares": 2222000,
-      "price": "66",
-      "realPrice": "未訂出",
-      "broker": "永豐金",
-      "subShares": 1000,
-      "totalAmt": 0,
       "qualified": 0,
       "winRate": 0.0
     },
