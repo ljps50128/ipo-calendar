@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-14T01:41:23Z",
+  "updated": "2026-07-15T01:27:21Z",
   "count": 101,
   "data": [
     {
@@ -71,10 +71,10 @@
       "listDate": "115/07/23",
       "shares": 2222000,
       "price": "66",
-      "realPrice": "未訂出",
+      "realPrice": "66",
       "broker": "永豐金",
       "subShares": 1000,
-      "totalAmt": 0,
+      "totalAmt": 146652000,
       "qualified": 0,
       "winRate": 0.0
     },
@@ -132,8 +132,8 @@
       "broker": "統一",
       "subShares": 1000,
       "totalAmt": 47634000,
-      "qualified": 0,
-      "winRate": 0.0
+      "qualified": 120979,
+      "winRate": 0.84
     },
     {
       "id": 8,
@@ -151,8 +151,8 @@
       "broker": "華南永昌",
       "subShares": 1000,
       "totalAmt": 63070000,
-      "qualified": 0,
-      "winRate": 0.0
+      "qualified": 66124,
+      "winRate": 3.59
     },
     {
       "id": 9,
@@ -165,11 +165,11 @@
       "drawDate": "115/07/14",
       "listDate": "115/07/17",
       "shares": 80000,
-      "price": "100",
-      "realPrice": "100",
+      "price": "99.805",
+      "realPrice": "99.805",
       "broker": "中華郵政公司",
       "subShares": 1000,
-      "totalAmt": 8000000,
+      "totalAmt": 7984400,
       "qualified": 0,
       "winRate": 0.0
     },
@@ -277,7 +277,7 @@
       "subStart": "115/07/01",
       "subEnd": "115/07/03",
       "drawDate": "115/07/07",
-      "listDate": "115/07/15",
+      "listDate": "115/07/16",
       "shares": 3719000,
       "price": "11",
       "realPrice": "11",
