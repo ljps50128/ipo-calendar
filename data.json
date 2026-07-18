@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-17T01:51:12Z",
+  "updated": "2026-07-18T01:40:54Z",
   "count": 103,
   "data": [
     {
@@ -71,10 +71,10 @@
       "listDate": "115/07/28",
       "shares": 1588000,
       "price": "188",
-      "realPrice": "未訂出",
+      "realPrice": "180.53",
       "broker": "富邦",
       "subShares": 1000,
-      "totalAmt": 0,
+      "totalAmt": 286681640,
       "qualified": 0,
       "winRate": 0.0
     },
