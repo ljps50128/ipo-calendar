@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-30T01:29:11Z",
+  "updated": "2026-07-31T01:56:22Z",
   "count": 109,
   "data": [
     {
@@ -52,10 +52,10 @@
       "listDate": "115/08/10",
       "shares": 1789000,
       "price": "28.6",
-      "realPrice": "未訂出",
+      "realPrice": "26.66",
       "broker": "群益金鼎",
       "subShares": 1000,
-      "totalAmt": 0,
+      "totalAmt": 47694740,
       "qualified": 0,
       "winRate": 0.0
     },
