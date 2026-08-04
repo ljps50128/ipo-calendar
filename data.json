@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-03T01:56:12Z",
+  "updated": "2026-08-04T01:42:37Z",
   "count": 112,
   "data": [
     {
@@ -113,8 +113,8 @@
       "broker": "群益金鼎",
       "subShares": 1000,
       "totalAmt": 47694740,
-      "qualified": 0,
-      "winRate": 0.0
+      "qualified": 34427,
+      "winRate": 5.19
     },
     {
       "id": 7,
@@ -132,8 +132,8 @@
       "broker": "台新",
       "subShares": 1000,
       "totalAmt": 311100000,
-      "qualified": 0,
-      "winRate": 0.0
+      "qualified": 23665,
+      "winRate": 21.55
     },
     {
       "id": 8,
