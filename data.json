@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-06T02:01:29Z",
+  "updated": "2026-09-07T01:58:48Z",
   "count": 134,
   "data": [
     {
@@ -265,8 +265,8 @@
       "broker": "國泰",
       "subShares": 1000,
       "totalAmt": 36800000,
-      "qualified": 0,
-      "winRate": 0.0
+      "qualified": 45964,
+      "winRate": 4.0
     },
     {
       "id": 15,
