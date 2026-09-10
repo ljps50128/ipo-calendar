@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-09T02:14:06Z",
+  "updated": "2026-09-10T02:12:17Z",
   "count": 135,
   "data": [
     {
@@ -151,8 +151,8 @@
       "broker": "合庫",
       "subShares": 1000,
       "totalAmt": 77520000,
-      "qualified": 0,
-      "winRate": 0.0
+      "qualified": 28550,
+      "winRate": 9.52
     },
     {
       "id": 9,
@@ -170,8 +170,8 @@
       "broker": "第一金",
       "subShares": 1000,
       "totalAmt": 39168000,
-      "qualified": 0,
-      "winRate": 0.0
+      "qualified": 144714,
+      "winRate": 0.93
     },
     {
       "id": 10,
@@ -189,8 +189,8 @@
       "broker": "統一",
       "subShares": 1000,
       "totalAmt": 13662000,
-      "qualified": 0,
-      "winRate": 0.0
+      "qualified": 57304,
+      "winRate": 1.32
     },
     {
       "id": 11,
