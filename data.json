@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-20T02:29:18Z",
+  "updated": "2026-09-21T02:27:21Z",
   "count": 138,
   "data": [
     {
@@ -37,8 +37,8 @@
       "broker": "中國信託",
       "subShares": 1000,
       "totalAmt": 99774000,
-      "qualified": 0,
-      "winRate": 0.0
+      "qualified": 238282,
+      "winRate": 0.3
     },
     {
       "id": 3,
