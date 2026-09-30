@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-29T03:22:57Z",
+  "updated": "2026-09-30T03:05:44Z",
   "count": 143,
   "data": [
     {
@@ -113,8 +113,8 @@
       "broker": "永豐金",
       "subShares": 1000,
       "totalAmt": 32640000,
-      "qualified": 0,
-      "winRate": 0.0
+      "qualified": 77305,
+      "winRate": 1.75
     },
     {
       "id": 7,
