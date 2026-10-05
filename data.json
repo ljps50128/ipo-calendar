@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-04T03:29:38Z",
+  "updated": "2026-10-05T03:07:45Z",
   "count": 147,
   "data": [
     {
@@ -132,8 +132,8 @@
       "broker": "富邦",
       "subShares": 1000,
       "totalAmt": 117044000,
-      "qualified": 0,
-      "winRate": 0.0
+      "qualified": 51046,
+      "winRate": 3.95
     },
     {
       "id": 8,
