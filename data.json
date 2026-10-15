@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-14T02:47:37Z",
+  "updated": "2026-10-15T02:26:35Z",
   "count": 155,
   "data": [
     {
@@ -109,10 +109,10 @@
       "listDate": "115/10/23",
       "shares": 657000,
       "price": "60",
-      "realPrice": "未訂出",
+      "realPrice": "60",
       "broker": "兆豐",
       "subShares": 1000,
-      "totalAmt": 0,
+      "totalAmt": 39420000,
       "qualified": 0,
       "winRate": 0.0
     },
@@ -128,10 +128,10 @@
       "listDate": "115/10/23",
       "shares": 412000,
       "price": "68",
-      "realPrice": "未訂出",
+      "realPrice": "68",
       "broker": "國票",
       "subShares": 1000,
-      "totalAmt": 0,
+      "totalAmt": 28016000,
       "qualified": 0,
       "winRate": 0.0
     },
@@ -165,11 +165,11 @@
       "drawDate": "115/10/14",
       "listDate": "115/10/19",
       "shares": 80000,
-      "price": "100",
-      "realPrice": "100",
+      "price": "99.951",
+      "realPrice": "99.951",
       "broker": "中華郵政公司",
       "subShares": 1000,
-      "totalAmt": 8000000,
+      "totalAmt": 7996080,
       "qualified": 0,
       "winRate": 0.0
     },
