@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-15T02:26:35Z",
+  "updated": "2026-10-16T02:20:46Z",
   "count": 155,
   "data": [
     {
@@ -90,10 +90,10 @@
       "listDate": "115/10/27",
       "shares": 1150000,
       "price": "138",
-      "realPrice": "未訂出",
+      "realPrice": "138",
       "broker": "元大",
       "subShares": 1000,
-      "totalAmt": 0,
+      "totalAmt": 158700000,
       "qualified": 0,
       "winRate": 0.0
     },
@@ -151,8 +151,8 @@
       "broker": "凱基",
       "subShares": 1000,
       "totalAmt": 45078000,
-      "qualified": 0,
-      "winRate": 0.0
+      "qualified": 104966,
+      "winRate": 0.65
     },
     {
       "id": 9,
