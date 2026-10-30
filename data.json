@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-29T03:35:09Z",
+  "updated": "2026-10-30T03:38:11Z",
   "count": 160,
   "data": [
     {
@@ -75,8 +75,8 @@
       "broker": "福邦",
       "subShares": 1000,
       "totalAmt": 21150000,
-      "qualified": 0,
-      "winRate": 0.0
+      "qualified": 28641,
+      "winRate": 6.28
     },
     {
       "id": 5,
