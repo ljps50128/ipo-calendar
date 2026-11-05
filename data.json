@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-04T03:59:14Z",
+  "updated": "2026-11-05T04:20:20Z",
   "count": 164,
   "data": [
     {
@@ -108,11 +108,11 @@
       "drawDate": "115/11/04",
       "listDate": "115/11/09",
       "shares": 60000,
-      "price": "100",
-      "realPrice": "100",
+      "price": "99.633",
+      "realPrice": "99.633",
       "broker": "中華郵政公司",
       "subShares": 1000,
-      "totalAmt": 6000000,
+      "totalAmt": 5977980,
       "qualified": 0,
       "winRate": 0.0
     },
