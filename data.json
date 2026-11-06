@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-05T04:20:20Z",
+  "updated": "2026-11-06T04:18:31Z",
   "count": 164,
   "data": [
     {
@@ -90,10 +90,10 @@
       "listDate": "115/11/16",
       "shares": 865000,
       "price": "252",
-      "realPrice": "未訂出",
+      "realPrice": "249.65",
       "broker": "永豐金",
       "subShares": 1000,
-      "totalAmt": 0,
+      "totalAmt": 215947250,
       "qualified": 0,
       "winRate": 0.0
     },
