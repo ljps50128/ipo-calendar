@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-24T07:40:27Z",
+  "updated": "2026-11-25T06:10:05Z",
   "count": 171,
   "data": [
     {
@@ -56,8 +56,8 @@
       "broker": "兆豐",
       "subShares": 1000,
       "totalAmt": 144500000,
-      "qualified": 0,
-      "winRate": 0.0
+      "qualified": 1073,
+      "winRate": 100.0
     },
     {
       "id": 4,
@@ -75,8 +75,8 @@
       "broker": "凱基",
       "subShares": 1000,
       "totalAmt": 21282690,
-      "qualified": 0,
-      "winRate": 0.0
+      "qualified": 6071,
+      "winRate": 7.42
     },
     {
       "id": 5,
