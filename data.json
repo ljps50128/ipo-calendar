@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-26T06:01:16Z",
+  "updated": "2026-11-27T05:54:58Z",
   "count": 171,
   "data": [
     {
@@ -37,8 +37,8 @@
       "broker": "凱基",
       "subShares": 1000,
       "totalAmt": 87400000,
-      "qualified": 0,
-      "winRate": 0.0
+      "qualified": 3046,
+      "winRate": 62.37
     },
     {
       "id": 3,
