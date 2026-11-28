@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-27T05:54:58Z",
+  "updated": "2026-11-28T05:35:29Z",
   "count": 171,
   "data": [
     {
@@ -12,7 +12,7 @@
       "subEnd": "115/12/03",
       "drawDate": "115/12/07",
       "listDate": "115/12/10",
-      "shares": 100000,
+      "shares": 0,
       "price": "100",
       "realPrice": "100",
       "broker": "中華郵政公司",
@@ -95,7 +95,7 @@
       "subShares": 1000,
       "totalAmt": 137961460,
       "qualified": 63392,
-      "winRate": 1.08
+      "winRate": 0.0
     },
     {
       "id": 6,
@@ -164,8 +164,8 @@
       "subEnd": "115/11/11",
       "drawDate": "115/11/13",
       "listDate": "115/11/19",
-      "shares": 1224000,
-      "price": "80",
+      "shares": 0,
+      "price": "12.",
       "realPrice": "---",
       "broker": "兆豐",
       "subShares": 1000,
@@ -206,7 +206,7 @@
       "price": "98",
       "realPrice": "98",
       "broker": "富邦",
-      "subShares": 1000,
+      "subShares": 0,
       "totalAmt": 74970000,
       "qualified": 91203,
       "winRate": 0.83
@@ -221,11 +221,11 @@
       "subEnd": "115/11/06",
       "drawDate": "115/11/10",
       "listDate": "115/11/16",
-      "shares": 865000,
+      "shares": 0,
       "price": "252",
-      "realPrice": "249.65",
+      "realPrice": "\u0000\u0000\u0000\u0000\u0000\u0000",
       "broker": "永豐金",
-      "subShares": 1000,
+      "subShares": 0,
       "totalAmt": 215947250,
       "qualified": 36394,
       "winRate": 2.37
@@ -259,12 +259,12 @@
       "subEnd": "115/10/30",
       "drawDate": "115/11/03",
       "listDate": "115/11/11",
-      "shares": 10626000,
+      "shares": 0,
       "price": "12.8",
       "realPrice": "12.8",
       "broker": "永豐金",
       "subShares": 2000,
-      "totalAmt": 136012800,
+      "totalAmt": 0,
       "qualified": 35879,
       "winRate": 14.8
     },
@@ -316,8 +316,8 @@
       "subEnd": "115/10/20",
       "drawDate": "115/10/22",
       "listDate": "115/10/30",
-      "shares": 1042000,
-      "price": "25",
+      "shares": 0,
+      "price": "5",
       "realPrice": "22.81",
       "broker": "宏遠",
       "subShares": 1000,
@@ -454,9 +454,9 @@
       "realPrice": "66",
       "broker": "凱基",
       "subShares": 1000,
-      "totalAmt": 45078000,
+      "totalAmt": 0,
       "qualified": 104966,
-      "winRate": 0.65
+      "winRate": 0.0
     },
     {
       "id": 25,
@@ -948,9 +948,9 @@
       "realPrice": "83",
       "broker": "永豐金",
       "subShares": 1000,
-      "totalAmt": 141100000,
+      "totalAmt": 0,
       "qualified": 37613,
-      "winRate": 4.51
+      "winRate": 0.0
     },
     {
       "id": 51,
@@ -1019,12 +1019,12 @@
       "subEnd": "115/08/28",
       "drawDate": "115/09/01",
       "listDate": "115/09/04",
-      "shares": 100000,
-      "price": "99.668",
+      "shares": 0,
+      "price": "32",
       "realPrice": "99.668",
       "broker": "中華郵政公司",
-      "subShares": 1000,
-      "totalAmt": 9966800,
+      "subShares": 0,
+      "totalAmt": 0,
       "qualified": 0,
       "winRate": 0.0
     },
@@ -1304,12 +1304,12 @@
       "subEnd": "115/07/22",
       "drawDate": "115/07/24",
       "listDate": "115/08/03",
-      "shares": 3480000,
+      "shares": 0,
       "price": "66",
       "realPrice": "66",
       "broker": "凱基",
-      "subShares": 1000,
-      "totalAmt": 229680000,
+      "subShares": 0,
+      "totalAmt": 0,
       "qualified": 179614,
       "winRate": 1.93
     },
@@ -1957,7 +1957,7 @@
       "subShares": 1000,
       "totalAmt": 11979360,
       "qualified": 0,
-      "winRate": 0.0
+      "winRate": 300.0
     },
     {
       "id": 104,
@@ -2009,7 +2009,7 @@
       "listDate": "115/05/11",
       "shares": 1489000,
       "price": "22.2",
-      "realPrice": "22.06",
+      "realPrice": "20",
       "broker": "台中銀",
       "subShares": 1000,
       "totalAmt": 32847340,
@@ -2179,8 +2179,8 @@
       "drawDate": "115/04/16",
       "listDate": "115/04/22",
       "shares": 697000,
-      "price": "628",
-      "realPrice": "628",
+      "price": "\u0000\u0000\u0000",
+      "realPrice": "\u0000\u0000\u0000",
       "broker": "凱基",
       "subShares": 1000,
       "totalAmt": 437716000,
@@ -2198,7 +2198,7 @@
       "drawDate": "115/04/14",
       "listDate": "115/04/17",
       "shares": 120000,
-      "price": "99.853",
+      "price": "\u0000\u0000\u0000\u0000\u0000\u0000",
       "realPrice": "99.853",
       "broker": "中華郵政公司",
       "subShares": 1000,
@@ -2695,8 +2695,8 @@
       "price": "99.726",
       "realPrice": "99.726",
       "broker": "中華郵政公司",
-      "subShares": 1000,
-      "totalAmt": 11967120,
+      "subShares": 0,
+      "totalAmt": 0,
       "qualified": 0,
       "winRate": 0.0
     },
@@ -2831,7 +2831,7 @@
       "subShares": 1000,
       "totalAmt": 32313600,
       "qualified": 162168,
-      "winRate": 0.97
+      "winRate": 0.0
     },
     {
       "id": 150,
